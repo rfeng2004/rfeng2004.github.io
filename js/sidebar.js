@@ -1,5 +1,17 @@
 function addSidebar() {
-    var openbtn = document.createElement("a");
+    var openbtn = document.createElement("span");
+    openbtn.innerHTML = "<a href='javascript:void(0)' onclick='openNav()' class='openbtn'>&equiv;</a>";
+    var sidebar = document.createElement("div");
+    sidebar.className = "sidebar";
+    sidebar.id = "sidebar";
+    var closebtn = document.createElement("span");
+    closebtn.innerHTML = "<a href='javascript:void(0)' onclick='closeNav()' class='closebtn'>&times;</a>";
+    var opts = [{page: "Home", link: "index.html"}, {page: "Projects", link: "projects.html"}, /*{page: "Contest History", link: "contesthistory.html"},*/];
+    opts.forEach(ele => {sidebar.innerHTML += "<a href=" + ele.link + ">" + ele.page + "</a>"});
+    sidebar.appendChild(closebtn);
+    document.body.append(openbtn);
+    document.body.append(sidebar);
+    /*var openbtn = document.createElement("a");
     openbtn.className = "openbtn";
     openbtn.onclick = openNav;
     openbtn.href = "javascript:void(0)";
@@ -22,7 +34,7 @@ function addSidebar() {
     sidebar.appendChild(home);
     sidebar.appendChild(projects);
     document.body.append(openbtn);
-    document.body.append(sidebar);
+    document.body.append(sidebar);*/
 }
 
 
