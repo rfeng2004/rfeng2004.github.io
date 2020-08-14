@@ -6,8 +6,16 @@ function addSidebar() {
     sidebar.id = "sidebar";
     var closebtn = document.createElement("span");
     closebtn.innerHTML = "<a href='javascript:void(0)' onclick='closeNav()' class='closebtn'>&times;</a>";
-    var opts = [{page: "Home", link: "index.html"}, {page: "Projects", link: "projects.html"}, /*{page: "Contest History", link: "contesthistory.html"},*/];
-    opts.forEach(ele => {sidebar.innerHTML += "<a href=" + ele.link + ">" + ele.page + "</a>"});
+    var opts = [{page: "Home", link: "index.html"}, {page: "Projects", link: "projects.html"}, /*{page: "Contest History", link: "contesthistory.html"},*/ {page: "Tutorials", link: "tutorials.html"},];
+    var name = location.pathname.substring(location.pathname.lastIndexOf("/") + 1);
+    opts.forEach(ele => {
+        if(ele.link == name) {
+            ele.current = true;
+        }
+    });
+    opts.forEach(ele => {
+        sidebar.innerHTML += "<a" + (("current" in ele) ? " id=current_page" : "") + " href=" + ele.link + ">" + ele.page + "</a>";
+    });
     sidebar.appendChild(closebtn);
     document.body.append(openbtn);
     document.body.append(sidebar);

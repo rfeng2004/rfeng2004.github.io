@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <!--style sheet-->
+        <link rel="stylesheet" type="text/css" href="css/style.css">
+
+        <!--favicon stuff-->
+        <link rel="icon" href="images/favicon.ico" type="image/ico"/>
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon"/>
+
+        <link rel="apple-touch-icon" sizes="76x76" href="images/apple-touch-icon.png">
+        <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32x32.png">
+        <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16x16.png">
+        <link rel="manifest" href="/site.webmanifest">
+        <link rel="mask-icon" href="images/safari-pinned-tab.svg" color="#000000">
+        <meta name="msapplication-TileColor" content="#da532c">
+        <meta name="theme-color" content="#ffffff">
+
+        <!--Title-->
+        <title>Raymond Feng</title>
+    </head>
+
+    <body>
+        <script src="js/sidebar.js"></script>
+        <div id="top">
+            <h1>Raymond Feng</h1>
+            <img id="pfp" src="images/nukelauncher.jpg" alt="nukelauncher"></img>
+        </div>
+        <div id="main">
+            <h1>VON Installation Tutorial (Mac)</h1>
+            <div id="content">
+                <b>Note:</b> All credits go to Evan Chen for creating VON, I simply made minor edits so that it would work on Mac.
+                <h3>Prerequisites</h3>
+                <ul>
+                    <li><a href="https://tug.org/texlive/" target="_blank">TeX Live</a>: This tutorial is not guaranteed to work with other TeX distributions.</li>
+                    <li>vim: I believe vim may be automatically installed on Macs. To check, open a terminal window and see if the command <code>vim --version</code> gives errors or prints a helpful message.</li>
+                    <li>evince: This prerequisite is not strictly required but I highly recommend installing evince as it is a great pdf viewer. You can install evince on Macs through <a href="https://brew.sh/" target="_blank">Homebrew</a>. After installing Homebrew, run <code>brew install evince</code> to install evince (this may take a while so be patient). If you decide not to use evince, there is an extra step needed when the .latexmkrc file is downloaded.
+                </ul>
+
+                <h3>Downloads</h3>
+                If you already have some of these files, it's not necessary to download them again.
+                <ul>
+                    <li>VON <a href="https://drive.google.com/file/d/1dZq4waz1PFSIF1TlXQCnQ22PUJur8V3W/view?usp=sharing" target="_blank">source files</a> for Mac</li>
+                    <li>
+                        Style files by Evan (right click and press "Save As..." and delete the ".txt" extension before saving):
+                        <ul>
+                            <li><a href="https://raw.githubusercontent.com/vEnhance/dotfiles/master/texmf/tex/latex/evan/evan.sty" target="_blank">evan.sty</a></li>
+                            <li><a href="https://raw.githubusercontent.com/vEnhance/dotfiles/master/texmf/tex/latex/von/von.sty" target="_blank">von.sty</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        Some .asy packages that aren't installed automatically with TeX Live (thanks Evan for hosting them :P):
+                        <ul>
+                            <li><a href="https://raw.githubusercontent.com/vEnhance/dotfiles/master/asy/cse5.asy" target="_blank">cse5.asy</a></li>
+                            <li><a href="https://raw.githubusercontent.com/vEnhance/dotfiles/master/asy/olympiad.asy" target="_blank">olympiad.asy</a></li>
+                        </ul>
+                    </li>
+                    <li>
+                        Open a new terminal window and run the following command to download a copy of .latexmkrc: <code>curl -o .latexmkrc https://rfeng2004.github.io/files/latexmkrc</code>.
+                        <ul>
+                            <li>If you opted not to use evince (or want to use a pdf viewer different from evince), use the command <code>vim .latexmkrc</code> and press "i", then replace "evince" with "open" on the third line for Preview the name of your desired pdf viewer (for example zathura). Hit escape and type ":x" then enter to save your changes.</li>
+                        </ul>
+                    </li>
+                </ul>
+                
+                <h3>Installation Instructions</h3>
+                <ol>
+                    <li>Find out what your home directory is. For me it's "/Users/raymondfeng". To find out your own, open a new terminal window and use the command <code>pwd</code>.</li>
+                    <li>Move "evan.sty" and "von.sty" into the directory "/Users/[complete your home directory]/Library/texmf/tex/latex", creating these directories if they did not already exist.</li>
+                    <li>Move "cse5.asy" and "olympiad.sty" into the directory "/usr/local/texlive/[your year of TeX Live]/texmf-dist/asymptote". You should not need to make new directories along the way this time; however, to move the files into the directory you may need superuser permission (i.e. you will need to enter your password).</li>
+                    <li>Unzip the zip file containing the VON source code.</li>
+                    <li>Open the "von" folder which came out of the zip file. Navigate to "von/controller/po.py", open up the file using IDLE or TextEdit, and change "Raymond Feng" to your name :).</li>
+                    <li>Create a folder called ".von" in your home directory. The easiest way to make this folder is to open a new terminal window and enter the command <code>mkdir .von</code>.</li>
+                    <li>Move the "von" folder that came out of the zip file into the ".von" folder you just created.</li>
+                    <li>
+                        In a new terminal window enter the command <code>vim .bash_profile</code>. Hit "i" and you should be able to edit the file. Paste <br>
+                        <textarea class="code" readonly="readonly">export PYTHONPATH='/Users/[complete your home directory]/.von'
+alias von='python3 -m von'</textarea> <br>
+                        into the file (if this file existed before, don't change any existing lines, just add the above code into the file). Hit the escape key and then type ":x" and hit enter to save your changes.
+                    </li>
+                    <li>In a new terminal window, enter the command <code>cd .von/von</code> and then run the commmand <code>sudo pip3 install -r requirements.txt</code>. Then, run <code>sudo pip3 install pyyaml</code>. For the last 2 commands, you will have to input your password.</li>
+                    <li>In a new terminal window, enter the command <code>mkdir Documents/von</code> (this is where all TeX files created by VON will live, you can create subfolders to organize entries by contest/year, etc.).</li>
+                    <li>All set! Open a new terminal window and run the command <code>von</code>. To get started with using VON, read Evan's tutorial <a href="https://github.com/vEnhance/von/blob/master/README.mkd" target="_blank">here</a>. To quit VON, press control+D (not command+D).</li>
+                </ol>
+            </div>
+        </div>
+    </body>
+
+    
+</html>
+
+

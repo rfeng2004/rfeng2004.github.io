@@ -3,8 +3,21 @@ a {
     text-decoration-line: none;
 }
 
-h1 {
+h1, h2, h3, h4, h5, h6 {
     font-family: Georgia;
+}
+
+code {
+    background-color: #cccccc;
+    color: green;
+    font-family: Consolas, "Courier New";
+}
+
+textarea.code {
+    width: 95%;
+    resize: none;
+    font-size: 20px;
+    font-family: Consolas, "Courier New";
 }
 
 /* sidebar opener*/
@@ -36,6 +49,7 @@ h1 {
     padding-top: 60px; /* Place content 60px from the top */
     transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
     white-space: nowrap;
+    font-family: Georgia;
 }
 
 /* The navigation menu links */
@@ -46,6 +60,11 @@ h1 {
     color: #818181;
     display: block;
     transition: 0.3s;
+}
+
+.sidebar #current_page {
+    color: red;
+    font-weight: bold;
 }
 
 /* When you mouse over the navigation links, change their color */
