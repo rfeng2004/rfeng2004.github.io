@@ -8,7 +8,7 @@ function addSidebar() {
     closebtn.innerHTML = "<a href='javascript:void(0)' onclick='closeNav()' class='closebtn'>&times;</a>";
     var opts = [{page: "Home", link: "index.html"}, {page: "Projects", link: "projects.html"}, /*{page: "Contest History", link: "contesthistory.html"},*/ {page: "Tutorials", link: "tutorials.html"},];
     var name = location.pathname.substring(location.pathname.lastIndexOf("/") + 1);
-    if(name == "rfeng2004.github.io") name = "index.html";
+    if(name == "") name = "index.html";
     opts.forEach(ele => {
         if(ele.link == name) {
             ele.current = true;
